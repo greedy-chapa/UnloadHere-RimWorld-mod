@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<ChapaGriff_UH_UnloadSelfAtSpot.reportString>разгружается на TargetA</ChapaGriff_UH_UnloadSelfAtSpot.reportString>
+	<ChapaGriff_UH_UnloadRopeesAtSpot.reportString>разгружает TargetA на TargetB</ChapaGriff_UH_UnloadRopeesAtSpot.reportString>
+	<ChapaGriff_UH_RopeToPen_Extended.reportString>ведёт TargetA к TargetC</ChapaGriff_UH_RopeToPen_Extended.reportString>
+	<ChapaGriff_UH_RopeRoamerToHitchingPost_Extended.reportString>ведёт TargetA к месту привязи</ChapaGriff_UH_RopeRoamerToHitchingPost_Extended.reportString>
+	<ChapaGriff_UH_FindAnimalsToUnloadTogetherWith.reportString>привязывает TargetA</ChapaGriff_UH_FindAnimalsToUnloadTogetherWith.reportString>
+</LanguageData>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<JobDef>
+		<defName>ChapaGriff_UH_UnloadSelfAtSpot</defName>
+		<driverClass>ChapaGriff_UnloadHere.JobDriver_UnloadSelfAtSpot</driverClass>
+		<reportString>unloading at TargetA.</reportString>
+	</JobDef>
+	<JobDef>
+		<defName>ChapaGriff_UH_UnloadRopeesAtSpot</defName>
+		<driverClass>ChapaGriff_UnloadHere.JobDriver_UnloadRopeesAtSpot</driverClass>
+		<reportString>unloading TargetA at TargetB.</reportString>
+	</JobDef>
+	<JobDef>
+		<defName>ChapaGriff_UH_RopeToPen_Extended</defName>
+		<driverClass>ChapaGriff_UnloadHere.JobDriver_RopeToPen_Extended</driverClass>
+		<reportString>leading TargetA to TargetC.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+	<JobDef>
+		<defName>ChapaGriff_UH_RopeRoamerToHitchingPost_Extended</defName>
+		<driverClass>ChapaGriff_UnloadHere.JobDriver_RopeRoamerToHitchingPost_Extended</driverClass>
+		<reportString>leading TargetA to hitching spot.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+	<JobDef>
+		<defName>ChapaGriff_UH_FindAnimalsToUnloadTogetherWith</defName>
+		<driverClass>ChapaGriff_UnloadHere.JobDriver_FindAnimalsToUnloadTogetherWith</driverClass>
+		<reportString>roping TargetA.</reportString>
+	</JobDef>
+
+</Defs>

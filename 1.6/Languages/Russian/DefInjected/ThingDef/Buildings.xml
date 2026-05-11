@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<ChapaGriff_UH_CaravanUnloadingSpot.label>место разгрузки каравана</ChapaGriff_UH_CaravanUnloadingSpot.label>
+	<ChapaGriff_UH_CaravanUnloadingSpot.description>Обозначает место для разгрузки караванов. Люди и животные будут выгружать здесь только разрешенные предметы. Они также будут предпочитать места разгрузки с более высоким приоритетом.</ChapaGriff_UH_CaravanUnloadingSpot.description>
+</LanguageData>

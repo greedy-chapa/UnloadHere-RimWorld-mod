@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>ChapaGriff_UH_CaravanUnloadingSpot</defName>
+		<label>caravan unloading spot</label>
+		<description>Designates a spot for unloading caravans. People and animals will unload only allowed items here. They will also prefer unloading spots with a higher priority.</description>
+		<thingClass>ChapaGriff_UnloadHere.Building_CaravanUnloadingSpot</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<graphicData>
+			<texPath>ChapaGriff.UnloadHere/CaravanUnloadingSpot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(1.0, 0.5, 0.0)</color>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		<altitudeLayer>FloorEmplacement</altitudeLayer>
+		<statBases>
+			<WorkToBuild>0</WorkToBuild>
+		</statBases>
+		<useHitPoints>false</useHitPoints>
+		<scatterableOnMapGen>false</scatterableOnMapGen>
+		<designationCategory>Misc</designationCategory>
+		<uiOrder>2010</uiOrder>
+		<passability>Standable</passability>
+		<building>
+			<sowTag>SupportPlantsOnly</sowTag>
+			<canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+			<ai_chillDestination>false</ai_chillDestination>
+			<wakeDormantPawnsOnConstruction>false</wakeDormantPawnsOnConstruction>
+			<artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+			<paintable>true</paintable>
+			<storageGroupTag>Unloading spot</storageGroupTag>
+			<fixedStorageSettings>
+				<filter>
+					<disallowNotEverStorable>true</disallowNotEverStorable>
+					<categories>
+						<li>Root</li>
+					</categories>
+				</filter>
+			</fixedStorageSettings>
+			<defaultStorageSettings>
+				<priority>Preferred</priority>
+				<filter>
+					<categories>
+						<li>Root</li>
+					</categories>
+				</filter>
+			</defaultStorageSettings>
+		</building>
+		<designationHotKey>Misc12</designationHotKey>
+		<inspectorTabs>
+			<li>ITab_Storage</li>
+		</inspectorTabs>
+	</ThingDef>
+
+</Defs>
