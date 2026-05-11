@@ -3,7 +3,10 @@
 	<packageId>ChapaGriff.UnloadHere</packageId>
 	<name>UnloadHere</name>
 	<author>ChapaGriff</author>
-	<description>Adds caravan unloading spot, where caravans will unload after arriving on your map. You can choose which things pawns will unload at each spot. This mod also adds commands to order unloading manually.</description>
+	<description>Adds caravan unloading spot, where caravans will unload after arriving on your map. You can choose which things pawns will unload at each spot. This mod also adds commands to order unloading manually.
+
+GitHub: https://github.com/greedy-chapa/UnloadHere-RimWorld-mod
+	</description>
 	<supportedVersions>
 		<li>1.6</li>
 	</supportedVersions>
