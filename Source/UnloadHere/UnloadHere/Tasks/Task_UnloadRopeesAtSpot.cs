@@ -14,7 +14,7 @@ namespace ChapaGriff_UnloadHere
         private List<List<Thing>> dropListsValues = null;
 		public List<Pawn> unprocessedRopees = new List<Pawn>();
 		private List<Pawn> tmpRopeesToDelete = new List<Pawn>();
-        public override JobDef JobDef => DefsOf.UnloadRopeesAtSpot;
+        public override JobDef JobDef => UH_DefOf.ChapaGriff_UH_UnloadRopeesAtSpot;
         public override LocalTargetInfo TargetA => unprocessedRopees[0];
         public override LocalTargetInfo TargetB => building;
 		public Task_UnloadRopeesAtSpot() : base() { } //necessary for IExposable to work

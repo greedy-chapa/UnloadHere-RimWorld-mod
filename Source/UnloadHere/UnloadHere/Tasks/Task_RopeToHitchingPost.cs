@@ -7,7 +7,7 @@ namespace ChapaGriff_UnloadHere
     public class Task_RopeToHitchingPost : Task
     {
         public List<Pawn> ropees;
-        public override JobDef JobDef => DefsOf.RopeRoamerToHitchingPost_Extended;
+        public override JobDef JobDef => UH_DefOf.ChapaGriff_UH_RopeRoamerToHitchingPost_Extended;
         public override LocalTargetInfo TargetA => ropees[0];
         public override LocalTargetInfo TargetB => building;
         public Task_RopeToHitchingPost() : base() { } //necessary for IExposable to work

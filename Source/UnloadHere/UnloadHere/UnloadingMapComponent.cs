@@ -9,7 +9,8 @@ namespace ChapaGriff_UnloadHere
 {
 	public class UnloadingMapComponent : MapComponent
 	{
-		public List<Building_CaravanUnloadingSpot> spots = new List<Building_CaravanUnloadingSpot>();
+        public static readonly List<JobDef> UnloadingJobDefs = new List<JobDef>() { UH_DefOf.ChapaGriff_UH_UnloadSelfAtSpot, UH_DefOf.ChapaGriff_UH_UnloadRopeesAtSpot, UH_DefOf.ChapaGriff_UH_RopeToPen_Extended, UH_DefOf.ChapaGriff_UH_RopeRoamerToHitchingPost_Extended };
+        public List<Building_CaravanUnloadingSpot> spots = new List<Building_CaravanUnloadingSpot>();
 		public Dictionary<Pawn, List<Pawn>> groups = new Dictionary<Pawn, List<Pawn>>(); //ropees grouped by ropers
 		public Dictionary<Pawn, TaskList> taskLists = new Dictionary<Pawn, TaskList>();
 		private List<Pawn> groupsKeys = null;
@@ -18,10 +19,12 @@ namespace ChapaGriff_UnloadHere
 		private List<TaskList> taskListsValues = null;
 		private const int garbageCollectionInterval = 300; //ticks
 		private List<Pawn> tmpPawnsToDelete = new List<Pawn>();
-		public UnloadingMapComponent(Map map) : base(map)
-		{
-			Log.Message($"[UnloadHere] UnloadingMapComponent initialized for map with id {map.uniqueID}");
-		}
+		public UnloadingMapComponent(Map map) : base(map) { }
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            Log.Message($"[UnloadHere] UnloadingMapComponent initialized for map with id {map.uniqueID}");
+        }
 		public override void ExposeData()
 		{
 			CollectGarbage();
@@ -55,7 +58,7 @@ namespace ChapaGriff_UnloadHere
 				{
 					if (!IsCapableOfUnloading(group[i]))
 					{
-						//Log.Message($"[UnloadHere] {group[i].Name} will be deleted from it's group");
+						//Log.Message($"[UnloadHere] {group[i].Name} will be deleted from its group");
 						group.RemoveAt(i);
 					}
 				}
@@ -64,7 +67,7 @@ namespace ChapaGriff_UnloadHere
 		}
 		public static bool IsUnloadingOrdered(Pawn pawn)
 		{
-			return DefsOf.UnloadingJobDefs.Contains(pawn.jobs.curJob?.def) || pawn.jobs.jobQueue.Any((queuedJob) => DefsOf.UnloadingJobDefs.Contains(queuedJob.job.def));
+			return UnloadingJobDefs.Contains(pawn.jobs.curJob?.def) || pawn.jobs.jobQueue.Any((queuedJob) => UnloadingJobDefs.Contains(queuedJob.job.def));
 		}
         public static bool IsCapableOfUnloading(Pawn pawn) => pawn != null && !pawn.Dead && !pawn.Downed;
         public bool AnySpotAccepts(Thing thing)

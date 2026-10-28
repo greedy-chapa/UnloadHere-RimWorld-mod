@@ -9,7 +9,7 @@ namespace ChapaGriff_UnloadHere
 	{
 		public List<Pawn> ropees;
 		public CompAnimalPenMarker comp;
-        public override JobDef JobDef => DefsOf.RopeToPen_Extended;
+        public override JobDef JobDef => UH_DefOf.ChapaGriff_UH_RopeToPen_Extended;
         public override LocalTargetInfo TargetA => ropees[0];
         public override LocalTargetInfo TargetB => building;
 		public override LocalTargetInfo TargetC => building;

@@ -29,7 +29,7 @@ namespace ChapaGriff_UnloadHere
 								{
 									var option = new FloatMenuOption("ChapaGriff_UH.UnloadAnimal".Translate(pawn), delegate
 									{
-										selPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(DefsOf.FindAnimalsToUnloadTogetherWith, pawn, pawn));
+										selPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(UH_DefOf.ChapaGriff_UH_FindAnimalsToUnloadTogetherWith, pawn, pawn));
 									});
 									var reserved = pawn.Map.reservationManager.TryGetReserver(pawn, pawn.Faction, out Pawn reserver);
 									if (reserved && reserver != selPawn) option.Label += ": " + "ReservedBy".Translate("", reserver);

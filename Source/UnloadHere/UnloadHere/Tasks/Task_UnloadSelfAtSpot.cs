@@ -10,7 +10,7 @@ namespace ChapaGriff_UnloadHere
 		public Pawn pawn;
 		public List<Thing> dropList = null;
 		public bool dropEverything = false; //if true, 'dropList' makes no sense
-		public override JobDef JobDef => DefsOf.UnloadSelfAtSpot;
+		public override JobDef JobDef => UH_DefOf.ChapaGriff_UH_UnloadSelfAtSpot;
 		public override LocalTargetInfo TargetA => building;
 		public Task_UnloadSelfAtSpot() : base() { } //necessary for IExposable to work
 		public Task_UnloadSelfAtSpot(Building_CaravanUnloadingSpot spot, Pawn pawn, bool dropEverything = true) : base(spot)
