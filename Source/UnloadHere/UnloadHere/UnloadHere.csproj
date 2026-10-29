@@ -57,7 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Building_CaravanUnloadingSpot.cs" />
+    <Compile Include="HarmonyPatches\Building_PassengerShuttle_GetFloatMenuOptions_Patch.cs" />
     <Compile Include="HarmonyPatches\CaravanEnterMapUtility_Enter_Patch.cs" />
+    <Compile Include="JobDrivers\JobDriver_UnloadShuttle.cs" />
     <Compile Include="UH_DefOf.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatches.cs" />
     <Compile Include="HarmonyPatches\Pawn_GetFloatMenuOptions_Patch.cs" />

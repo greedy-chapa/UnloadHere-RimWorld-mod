@@ -2,9 +2,9 @@
 <LanguageData>
 	<ChapaGriff_UH.UnloadSelf>Unload</ChapaGriff_UH.UnloadSelf>
     <ChapaGriff_UH.UnloadSelf_Description>Unload at caravan unloading spots. The pawn will plan an optimal route itself.</ChapaGriff_UH.UnloadSelf_Description>
-    <ChapaGriff_UH.UnloadAnimal>Unload {0_labelShort} at caravan unloading spots</ChapaGriff_UH.UnloadAnimal>
+    <ChapaGriff_UH.UnloadAnimal>Unload {0} at caravan unloading spots</ChapaGriff_UH.UnloadAnimal>
 	<ChapaGriff_UH.UnloadSelf_Cannot>Cannot unload: {0}</ChapaGriff_UH.UnloadSelf_Cannot>
-    <ChapaGriff_UH.UnloadAnimal_Cannot>Cannot unload {0_labelShort} at caravan unloading spots: {1}</ChapaGriff_UH.UnloadAnimal_Cannot>
+    <ChapaGriff_UH.UnloadAnimal_Cannot>Cannot unload {0} at caravan unloading spots: {1}</ChapaGriff_UH.UnloadAnimal_Cannot>
     <ChapaGriff_UH.NoAccepedThings>inventory contains no accepted things</ChapaGriff_UH.NoAccepedThings>
     <ChapaGriff_UH.NoReachableSpots>no reachable caravan unloading spots</ChapaGriff_UH.NoReachableSpots>
 </LanguageData>

@@ -56,7 +56,7 @@ namespace ChapaGriff_UnloadHere
 		{
 			yield return new Toil()
 			{
-				initAction = delegate //why i use delegate i'll explain in JobDriver_UnloadSelfAtSpot.cs
+				initAction = delegate //why i use delegate i've explained in JobDriver_UnloadSelfAtSpot.cs
 				{
 					UnloadingMC.RopeGroup(pawn, jobToReserveFor: job);
 					TaskList?.StartNextTask();

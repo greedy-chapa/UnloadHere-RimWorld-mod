@@ -5,4 +5,5 @@
 	<ChapaGriff_UH_RopeToPen_Extended.reportString>ведёт TargetA к TargetC</ChapaGriff_UH_RopeToPen_Extended.reportString>
 	<ChapaGriff_UH_RopeRoamerToHitchingPost_Extended.reportString>ведёт TargetA к месту привязи</ChapaGriff_UH_RopeRoamerToHitchingPost_Extended.reportString>
 	<ChapaGriff_UH_FindAnimalsToUnloadTogetherWith.reportString>привязывает TargetA</ChapaGriff_UH_FindAnimalsToUnloadTogetherWith.reportString>
+	<ChapaGriff_UH_UnloadShuttle.reportString>забирает вещи из TargetA</ChapaGriff_UH_UnloadShuttle.reportString>
 </LanguageData>

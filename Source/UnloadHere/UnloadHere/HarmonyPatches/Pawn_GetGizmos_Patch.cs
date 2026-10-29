@@ -33,7 +33,7 @@ namespace ChapaGriff_UnloadHere
 				else if (pawn.MentalStateDef != null) gizmo.Disable("CantRopeAnimalMentalState".Translate(pawn, pawn.MentalStateDef));
 				else if (!unloadingMC.spots.Any((Building spot) => pawn.CanReach(spot, PathEndMode.Touch, Danger.Deadly)))
 					gizmo.Disable("ChapaGriff_UH.NoReachableSpots".Translate());
-				else if (!pawn.inventory.innerContainer.Any((Thing thing) => unloadingMC.AnySpotAccepts(thing)))
+				else if (!pawn.inventory.innerContainer.Any((Thing thing) => unloadingMC.AnyReachableSpotAccepts(thing, pawn)))
 					gizmo.Disable("ChapaGriff_UH.NoAccepedThings".Translate());
 				yield return gizmo;
             }

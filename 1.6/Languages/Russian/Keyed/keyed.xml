@@ -2,9 +2,9 @@
 <LanguageData>
 	<ChapaGriff_UH.UnloadSelf>Разгрузиться</ChapaGriff_UH.UnloadSelf>
     <ChapaGriff_UH.UnloadSelf_Description>Разгрузиться на местах разгрузки караванов. Пешка спланирует оптимальный маршрут сама.</ChapaGriff_UH.UnloadSelf_Description>
-    <ChapaGriff_UH.UnloadAnimal>Разгрузить {0_labelShort} на местах разгрузки караванов</ChapaGriff_UH.UnloadAnimal>
+    <ChapaGriff_UH.UnloadAnimal>Разгрузить {0} на местах разгрузки караванов</ChapaGriff_UH.UnloadAnimal>
 	<ChapaGriff_UH.UnloadSelf_Cannot>Невозможно разгрузиться: {0}</ChapaGriff_UH.UnloadSelf_Cannot>
-    <ChapaGriff_UH.UnloadAnimal_Cannot>Невозможно разгрузить {0_labelShort} на местах разгрузки караванов: {1}</ChapaGriff_UH.UnloadAnimal_Cannot>
+    <ChapaGriff_UH.UnloadAnimal_Cannot>Невозможно разгрузить {0} на местах разгрузки караванов: {1}</ChapaGriff_UH.UnloadAnimal_Cannot>
     <ChapaGriff_UH.NoAccepedThings>инвентарь не содержит принимаемых вещей</ChapaGriff_UH.NoAccepedThings>
     <ChapaGriff_UH.NoReachableSpots>нет доступных мест разрузки караванов</ChapaGriff_UH.NoReachableSpots>
 </LanguageData>

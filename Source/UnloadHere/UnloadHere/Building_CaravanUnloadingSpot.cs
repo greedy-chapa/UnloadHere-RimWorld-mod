@@ -123,6 +123,7 @@ namespace ChapaGriff_UnloadHere
 				settings.CopyFrom(storeSettings);
 			}
 			UnloadingMC.spots.Add(this);
+			UnloadingMC.spotsByPriority[(byte)settings.Priority].Add(this);
 		}
 		public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
 		{
@@ -133,6 +134,7 @@ namespace ChapaGriff_UnloadHere
 				storageGroup = null;
 			}
 			UnloadingMC.spots.Remove(this);
+			UnloadingMC.spotsByPriority[(byte)settings.Priority].Remove(this);
 		}
 		public override void DrawExtraSelectionOverlays()
 		{

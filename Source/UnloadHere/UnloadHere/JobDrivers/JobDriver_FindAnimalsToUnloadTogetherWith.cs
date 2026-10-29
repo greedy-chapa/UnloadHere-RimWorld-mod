@@ -21,7 +21,7 @@ namespace ChapaGriff_UnloadHere
 		protected override void ProcessArrivedRopee(Pawn ropee) { }
 		protected override bool ShouldOpportunisticallyRopeAnimal(Pawn animal) => UnloadingMapComponent.IsColonyAnimal(animal) && animal.RaceProps.packAnimal &&
 			AnimalPenUtility.IsRopeManagedAnimalDef(animal.def) && animal.Spawned && !animal.Dead && !animal.Downed && animal.MentalStateDef == null &&
-			!animal.roping.HasAnyRope && pawn.CanReserve(animal) && animal.inventory.innerContainer.Any((Thing item) => UnloadingMC.AnySpotAccepts(item));
+			!animal.roping.HasAnyRope && pawn.CanReserve(animal) && animal.inventory.innerContainer.Any((Thing item) => UnloadingMC.AnyReachableSpotAccepts(item, pawn));
 		protected override IEnumerable<Toil> MakeNewToils()
 		{
 			var baseToils = base.MakeNewToils().ToList();

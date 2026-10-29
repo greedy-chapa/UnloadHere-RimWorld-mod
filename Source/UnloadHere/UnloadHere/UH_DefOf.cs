@@ -12,5 +12,6 @@ namespace ChapaGriff_UnloadHere
 		public static JobDef ChapaGriff_UH_RopeToPen_Extended;
 		public static JobDef ChapaGriff_UH_RopeRoamerToHitchingPost_Extended;
 		public static JobDef ChapaGriff_UH_FindAnimalsToUnloadTogetherWith;
-    }
+		public static JobDef ChapaGriff_UH_UnloadShuttle;
+	}
 }

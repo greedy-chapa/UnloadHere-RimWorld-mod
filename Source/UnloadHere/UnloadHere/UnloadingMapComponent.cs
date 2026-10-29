@@ -9,8 +9,9 @@ namespace ChapaGriff_UnloadHere
 {
 	public class UnloadingMapComponent : MapComponent
 	{
-        public static readonly List<JobDef> UnloadingJobDefs = new List<JobDef>() { UH_DefOf.ChapaGriff_UH_UnloadSelfAtSpot, UH_DefOf.ChapaGriff_UH_UnloadRopeesAtSpot, UH_DefOf.ChapaGriff_UH_RopeToPen_Extended, UH_DefOf.ChapaGriff_UH_RopeRoamerToHitchingPost_Extended };
+        public static readonly List<JobDef> DefsOfJobsUsingTaskLists = new List<JobDef>() { UH_DefOf.ChapaGriff_UH_UnloadSelfAtSpot, UH_DefOf.ChapaGriff_UH_UnloadRopeesAtSpot, UH_DefOf.ChapaGriff_UH_RopeToPen_Extended, UH_DefOf.ChapaGriff_UH_RopeRoamerToHitchingPost_Extended };
         public List<Building_CaravanUnloadingSpot> spots = new List<Building_CaravanUnloadingSpot>();
+		public List<Building_CaravanUnloadingSpot>[] spotsByPriority = new List<Building_CaravanUnloadingSpot>[6];
 		public Dictionary<Pawn, List<Pawn>> groups = new Dictionary<Pawn, List<Pawn>>(); //ropees grouped by ropers
 		public Dictionary<Pawn, TaskList> taskLists = new Dictionary<Pawn, TaskList>();
 		private List<Pawn> groupsKeys = null;
@@ -19,12 +20,20 @@ namespace ChapaGriff_UnloadHere
 		private List<TaskList> taskListsValues = null;
 		private const int garbageCollectionInterval = 300; //ticks
 		private List<Pawn> tmpPawnsToDelete = new List<Pawn>();
-		public UnloadingMapComponent(Map map) : base(map) { }
+		public UnloadingMapComponent(Map map) : base(map)
+		{
+			for (byte i = 0; i <= 5; i++) spotsByPriority[i] = new List<Building_CaravanUnloadingSpot>();
+		}
         public override void FinalizeInit()
         {
             base.FinalizeInit();
             Log.Message($"[UnloadHere] UnloadingMapComponent initialized for map with id {map.uniqueID}");
         }
+        public override void MapComponentTick()
+		{
+			base.MapComponentTick();
+			if ((Find.TickManager.TicksGame + map.uniqueID) % garbageCollectionInterval == 0) CollectGarbage();
+		}
 		public override void ExposeData()
 		{
 			CollectGarbage();
@@ -67,7 +76,7 @@ namespace ChapaGriff_UnloadHere
 		}
 		public static bool IsUnloadingOrdered(Pawn pawn)
 		{
-			return UnloadingJobDefs.Contains(pawn.jobs.curJob?.def) || pawn.jobs.jobQueue.Any((queuedJob) => UnloadingJobDefs.Contains(queuedJob.job.def));
+			return DefsOfJobsUsingTaskLists.Contains(pawn.jobs.curJob?.def) || pawn.jobs.jobQueue.Any((queuedJob) => DefsOfJobsUsingTaskLists.Contains(queuedJob.job.def));
 		}
         public static bool IsCapableOfUnloading(Pawn pawn) => pawn != null && !pawn.Dead && !pawn.Downed;
         public bool AnySpotAccepts(Thing thing)
@@ -77,15 +86,28 @@ namespace ChapaGriff_UnloadHere
 				if (spot.Accepts(thing)) return true;
 			}
 			return false;
-		}
-		//i try to use this duplicate of original Pawn.IsColonyAnimal because, for some reason, it doesn't work for my tester on 1.6.4518
-		public static bool IsColonyAnimal(Pawn pawn) => pawn.IsAnimal && pawn.Faction == Faction.OfPlayer;
-        public override void MapComponentTick()
+        }
+        public bool AnyReachableSpotAccepts(Thing thing, Pawn pawn)
+        {
+            foreach (var spot in spots)
+            {
+                if (spot.Accepts(thing) && pawn.CanReach(spot, PathEndMode.OnCell, Danger.Deadly)) return true;
+            }
+            return false;
+        }
+        //i use this duplicate of original Pawn.IsColonyAnimal because, for some reason, it doesn't work for my tester on 1.6.4518
+        public static bool IsColonyAnimal(Pawn pawn) => pawn.IsAnimal && pawn.Faction == Faction.OfPlayer;
+		public Building_CaravanUnloadingSpot FindBestSpotFor(Thing thing, Pawn pawn)
 		{
-			base.MapComponentTick();
-			if ((Find.TickManager.TicksGame + map.uniqueID) % garbageCollectionInterval == 0) CollectGarbage();
+			Building_CaravanUnloadingSpot bestSpot = null;
+			for (byte i = 5; i > 0; i--)
+			{
+				bestSpot = GenClosest.ClosestThing_Global_Reachable(pawn.Position, pawn.Map, spotsByPriority[i].FindAll((Building_CaravanUnloadingSpot spot) => spot.Accepts(thing)), PathEndMode.Touch, TraverseParms.For(pawn, mode: TraverseMode.PassDoors)) as Building_CaravanUnloadingSpot;
+				if (bestSpot != null) break;
+			}
+			return bestSpot;
 		}
-		public void Unload(List<Pawn> pawns, bool draftColonists = false, bool urgently = false)
+		public void Unload(List<Pawn> pawns, Building shuttle = null, bool draftColonists = false, bool urgently = false)
 		{
 			if (pawns.Any())
 			{
@@ -155,8 +177,10 @@ namespace ChapaGriff_UnloadHere
 						taskLists[colonist].AddRange(GetTaskListForLeadingRopeesToPen(colonist, groups[colonist]));
 					}
 					taskLists[colonist].AddRange(GetTaskListForSelfUnloading(colonist, save: false));
-					//Log.Message($"[UnloadHere] {colonist.Name}'s final taskList:\n{taskLists[colonist]}");
-					taskLists[colonist].Execute(colonist, urgently: urgently);
+                    //Log.Message($"[UnloadHere] {colonist.Name}'s final taskList:\n{taskLists[colonist]}");
+                    if (urgently && shuttle != null) colonist.jobs.jobQueue.EnqueueFirst(JobMaker.MakeJob(UH_DefOf.ChapaGriff_UH_UnloadShuttle, shuttle));
+                    taskLists[colonist].Execute(colonist, urgently: urgently);
+					if (!urgently && shuttle != null) colonist.jobs.jobQueue.EnqueueLast(JobMaker.MakeJob(UH_DefOf.ChapaGriff_UH_UnloadShuttle, shuttle));
 				}
 			}
 		}
@@ -167,9 +191,7 @@ namespace ChapaGriff_UnloadHere
 			if (pawn.inventory.innerContainer.Any() && spots.Any())
 			{
 				var unvisited = new List<Building_CaravanUnloadingSpot>[6];
-				for (byte i = 0; i < 6; i++) unvisited[i] = new List<Building_CaravanUnloadingSpot>();
-				//sorting spots by priority
-				foreach (Building_CaravanUnloadingSpot spot_ in spots) unvisited[(byte)spot_.settings.Priority].Add(spot_);
+				for (byte i = 0; i < 6; i++) unvisited[i] = new List<Building_CaravanUnloadingSpot>(spotsByPriority[i]);
 				var pos = pawn.Position;
 				var inventory = new List<Thing>(pawn.inventory.innerContainer);
 				Building_CaravanUnloadingSpot spot;

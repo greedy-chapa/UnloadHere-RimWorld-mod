@@ -44,7 +44,8 @@ namespace ChapaGriff_UnloadHere
 					CaravanEnterMapUtility.DropAllInventory(___tmpPawns);
 					break;
 				case CaravanDropInventoryMode.UnloadIndividually:
-					map.GetComponent<UnloadingMapComponent>().Unload(___tmpPawns, draftColonists); //my line of code
+					map.GetComponent<UnloadingMapComponent>().Unload(___tmpPawns, shuttle: shuttle, draftColonists: draftColonists); //my line of code
+					//add line for unloading shuttle
 					break;
 			}
 

@@ -25,9 +25,9 @@ namespace ChapaGriff_UnloadHere
 							var unloadingMC = pawn.Map.GetComponent<UnloadingMapComponent>();
 							if (unloadingMC.spots.Any((Building spot) => selPawn.CanReach(spot, PathEndMode.Touch, Danger.Deadly)))
 							{
-								if (pawn.inventory.innerContainer.Any((Thing thing) => unloadingMC.AnySpotAccepts(thing)))
+								if (pawn.inventory.innerContainer.Any((Thing thing) => unloadingMC.AnyReachableSpotAccepts(thing, selPawn)))
 								{
-									var option = new FloatMenuOption("ChapaGriff_UH.UnloadAnimal".Translate(pawn), delegate
+									var option = new FloatMenuOption("ChapaGriff_UH.UnloadAnimal".Translate(pawn.LabelShort), delegate
 									{
 										selPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(UH_DefOf.ChapaGriff_UH_FindAnimalsToUnloadTogetherWith, pawn, pawn));
 									});
@@ -35,15 +35,15 @@ namespace ChapaGriff_UnloadHere
 									if (reserved && reserver != selPawn) option.Label += ": " + "ReservedBy".Translate("", reserver);
 									yield return option;
 								}
-								else yield return new FloatMenuOption("ChapaGriff_UH.UnloadAnimal_Cannot".Translate(pawn, "ChapaGriff_UH.NoAccepedThings".Translate()), null);
+								else yield return new FloatMenuOption("ChapaGriff_UH.UnloadAnimal_Cannot".Translate(pawn.LabelShort, "ChapaGriff_UH.NoAccepedThings".Translate()), null);
 							}
-							else yield return new FloatMenuOption("ChapaGriff_UH.UnloadAnimal_Cannot".Translate(pawn, "ChapaGriff_UH.NoReachableSpots".Translate()), null);
+							else yield return new FloatMenuOption("ChapaGriff_UH.UnloadAnimal_Cannot".Translate(pawn.LabelShort, "ChapaGriff_UH.NoReachableSpots".Translate()), null);
 						}
-						else yield return new FloatMenuOption("ChapaGriff_UH.UnloadAnimal_Cannot".Translate(pawn, "CantRopeAnimalMentalState".Translate(pawn, pawn.MentalStateDef)), null);
-                    }
-                    else yield return new FloatMenuOption("ChapaGriff_UH.UnloadAnimal_Cannot".Translate(pawn, "CantInteractAnimalDowned".Translate()), null);
+						else yield return new FloatMenuOption("ChapaGriff_UH.UnloadAnimal_Cannot".Translate(pawn.LabelShort, "CantRopeAnimalMentalState".Translate(pawn, pawn.MentalStateDef)), null);
+					}
+					else yield return new FloatMenuOption("ChapaGriff_UH.UnloadAnimal_Cannot".Translate(pawn.LabelShort, "CantInteractAnimalDowned".Translate()), null);
                 }
-				else yield return new FloatMenuOption("ChapaGriff_UH.UnloadAnimal_Cannot".Translate(pawn, "NoPath".Translate()), null);
+				else yield return new FloatMenuOption("ChapaGriff_UH.UnloadAnimal_Cannot".Translate(pawn.LabelShort, "NoPath".Translate()), null);
 			}
 		}
 	}

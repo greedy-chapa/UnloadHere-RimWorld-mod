@@ -30,5 +30,10 @@
 		<driverClass>ChapaGriff_UnloadHere.JobDriver_FindAnimalsToUnloadTogetherWith</driverClass>
 		<reportString>roping TargetA.</reportString>
 	</JobDef>
+	<JobDef>
+		<defName>ChapaGriff_UH_UnloadShuttle</defName>
+		<driverClass>ChapaGriff_UnloadHere.JobDriver_UnloadShuttle</driverClass>
+		<reportString>taking stuff from TargetA.</reportString>
+	</JobDef>
 
 </Defs>
